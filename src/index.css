@@ -64,3 +64,7 @@ button:focus-visible {
   cursor: pointer;
   box-shadow: 5px 5px 10px 0px;
 }
+
+a.active {
+  color: orange;
+}
