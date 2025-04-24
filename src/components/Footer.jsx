@@ -1,7 +1,7 @@
 
 function Footer(){
     return (
-        <h1>This is Footer component...</h1>
+        <h4>Loop Troop, 2025</h4>
     )
 }
 

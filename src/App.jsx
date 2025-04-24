@@ -8,6 +8,7 @@ import MovieList from "./pages/MovieList"
 import Footer from "./components/Footer"
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/" element={<MovieList moviesArr={moviesToDisplay} callbackToDelete={deleteMovie} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/movies/:movieId" element={<MovieDetails moviesArr={moviesToDisplay} />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
 
