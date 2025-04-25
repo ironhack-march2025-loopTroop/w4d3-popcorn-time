@@ -27,14 +27,23 @@ function App() {
     setMoviesToDisplay(newList);
   }
 
-  
+
   // handleSubmit: will handle the form to create new movies
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
+    // find out id for the movie that we want to add
+    const movieIds = moviesToDisplay.map((movieObj) => {
+      return movieObj.id;
+    });
+    const maxId = Math.max(...movieIds);
+    const nextId = maxId + 1;
+
+    // prepare an object with the details of the new movie (inc. the id)
     const newMovie = {
       title: title,
       rating: rating,
+      id: nextId
     }
 
     const newList = [newMovie, ...moviesToDisplay]
@@ -60,19 +69,19 @@ function App() {
         <form onSubmit={handleSubmit}>
           <label>
             Title:
-            <input 
-              type="text" 
+            <input
+              type="text"
               required
-              name="title" 
-              placeholder="movie title" 
-              value={title} 
+              name="title"
+              placeholder="movie title"
+              value={title}
               onChange={(e) => { setTitle(e.target.value) }}
             />
           </label>
-          
+
           <label>
             Rating:
-            <input 
+            <input
               type="number"
               min={1}
               max={10}
