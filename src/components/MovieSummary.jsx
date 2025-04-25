@@ -4,6 +4,7 @@ function MovieSummary(props) {
     return (
         <div className="card">
             <h2>{props.movieDetails.title}</h2>
+            <p>Rating: {props.movieDetails.rating}</p>
             <img src={props.movieDetails.imgURL} alt="Movie Poster" />
 
             <p>
