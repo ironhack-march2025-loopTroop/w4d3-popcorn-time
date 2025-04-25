@@ -5,7 +5,10 @@ function MovieSummary(props) {
         <div className="card">
             <h2>{props.movieDetails.title}</h2>
             <p>Rating: {props.movieDetails.rating}</p>
-            <img src={props.movieDetails.imgURL} alt="Movie Poster" />
+
+            { props.movieDetails.imgURL 
+                && <img src={props.movieDetails.imgURL} alt="Movie Poster" />
+            }
 
             <p>
                 {/* when the user clicks, we'll invoke a function in the parent component */}

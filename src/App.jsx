@@ -14,7 +14,9 @@ import MovieDetails from "./pages/MovieDetails";
 function App() {
 
   const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
+
   const [title, setTitle] = useState("");
+  const [rating, setRating] = useState("");
 
 
   // deleteMovie: will receive the id of a movie and delete it from state
@@ -32,7 +34,7 @@ function App() {
     
     const newMovie = {
       title: title,
-      year: 2025
+      rating: rating,
     }
 
     const newList = [newMovie, ...moviesToDisplay]
@@ -42,6 +44,7 @@ function App() {
 
     // clear form
     setTitle("")
+    setRating("")
   }
 
 
@@ -59,12 +62,28 @@ function App() {
             Title:
             <input 
               type="text" 
+              required
               name="title" 
               placeholder="movie title" 
               value={title} 
               onChange={(e) => { setTitle(e.target.value) }}
             />
           </label>
+          
+          <label>
+            Rating:
+            <input 
+              type="number"
+              min={1}
+              max={10}
+              required
+              name="rating"
+              placeholder="rating"
+              value={rating}
+              onChange={(e) => { setRating(e.target.value) }}
+            />
+          </label>
+
           <button>Create</button>
         </form>
       </section>
