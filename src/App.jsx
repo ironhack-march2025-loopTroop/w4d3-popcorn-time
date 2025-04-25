@@ -10,27 +10,66 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MovieDetails from "./pages/MovieDetails";
 
+
 function App() {
 
   const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
+  const [title, setTitle] = useState("");
 
 
   // deleteMovie: will receive the id of a movie and delete it from state
   const deleteMovie = (movieToDeleteId) => {
     const newList = moviesToDisplay.filter((movie) => {
-      if (movie.id !== movieToDeleteId) {
-        return true; // keep it
-      } else {
-        return false; // discard it
-      }
+      return movie.id !== movieToDeleteId;
     })
     setMoviesToDisplay(newList);
   }
+
+  
+  // handleSubmit: will handle the form to create new movies
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const newMovie = {
+      title: title,
+      year: 2025
+    }
+
+    const newList = [newMovie, ...moviesToDisplay]
+
+    // moviesToDisplay.push(newMovie); // never, never modify state directly
+    setMoviesToDisplay(newList)
+
+    // clear form
+    setTitle("")
+  }
+
+
 
   return (
     <>
 
       <Header numberOfMovies={moviesToDisplay.length} />
+
+      <section className="card">
+        <h2>Create a new movie</h2>
+
+        <form onSubmit={handleSubmit}>
+          <label>
+            Title:
+            <input 
+              type="text" 
+              name="title" 
+              placeholder="movie title" 
+              value={title} 
+              onChange={(e) => { setTitle(e.target.value) }}
+            />
+          </label>
+          <button>Create</button>
+        </form>
+      </section>
+
+
 
       <Routes>
         <Route path="/" element={<MovieList moviesArr={moviesToDisplay} callbackToDelete={deleteMovie} />} />
